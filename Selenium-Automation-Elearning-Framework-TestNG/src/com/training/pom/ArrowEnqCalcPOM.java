@@ -55,6 +55,8 @@ public class ArrowEnqCalcPOM {
 
 	@FindBy(xpath = "//div[@class='notification success']")
 	public WebElement mortSuccessMsg;
+	
+	
 
 	// Methods
 	public void clickArrowBtn() {

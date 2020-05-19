@@ -23,7 +23,9 @@ public class NewLaunchPOM {
 	//@FindBy(xpath = "//img[contains(@src,'http://realty-real-estatem1.upskills.in/wp-content/uploads/2017/08/apartment05-345x250.jpg')]")
 	@FindBy (xpath = "//div[@id='wpmm-megamenu']//div[@class='wpmm-post post-156']//img[@class='attachment-wpmm_thumb size-wpmm_thumb wp-post-image']")
 	private WebElement img;
-
+	
+	@FindBy(xpath = "//div[@id='wpmm-megamenu']//a[contains(text(),'Donec quis')]")
+	public WebElement donecQuisLink;
 	
 	public void mouseHoverNewLaunch() {
 		Actions action = new Actions(driver);
@@ -32,6 +34,10 @@ public class NewLaunchPOM {
 	
 	public void clickNullamAptIcon() {
 		this.img.click();
+	}
+	
+	public void clickDonecQuisLink() {
+		this.donecQuisLink.click();
 	}
 
 }

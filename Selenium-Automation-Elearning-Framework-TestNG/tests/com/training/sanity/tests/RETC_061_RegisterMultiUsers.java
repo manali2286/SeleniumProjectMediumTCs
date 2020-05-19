@@ -67,7 +67,7 @@ public class RETC_061_RegisterMultiUsers {
 		String expectedMsg = "You have successfully registered to Real Estate. We have emailed your password to the email address you entered.";
 		String txt = registerPOM.getMessage();
 		Assert.assertEquals(txt, expectedMsg);
-		screenShot.captureScreenShot(firstName);
+		screenShot.captureScreenShot("TC61");
 
 	}
 

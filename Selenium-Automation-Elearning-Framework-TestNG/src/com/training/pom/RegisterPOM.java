@@ -34,6 +34,9 @@ public class RegisterPOM {
 
 	@FindBy(xpath = "//div//p[contains(text(),'You have successfully registered to')]")
 	private WebElement successMsg;
+	
+	@FindBy(xpath = "//p[contains(text(),'The email address you entered is not valid.')]")
+	private WebElement emailErrMsg;
 
 	public void sendEmail(String myEmail) {
 		this.myEmail.clear();
@@ -64,6 +67,11 @@ public class RegisterPOM {
 
 	public String getMessage() {
 		return successMsg.getText();
+
+	}
+	
+	public String getEmailErrMsg() {
+		return emailErrMsg.getText();
 
 	}
 }

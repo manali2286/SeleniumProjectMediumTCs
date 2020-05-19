@@ -9,17 +9,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.training.bean.LoginBean;
+import com.training.dao.ELearningDAO;
+import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
+import com.training.pom.LoginPOM;
 import com.training.pom.RegisterPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+import com.training.dataproviders.LoginDataProviders;
 
-public class RETC_001_RegistrationTest {
+public class RETC_062_RegisterInvalidMultiUsers {
 
 	private WebDriver driver;
 	private String baseUrl;
@@ -42,33 +48,28 @@ public class RETC_001_RegistrationTest {
 		screenShot = new ScreenShot(driver);
 		// open the browser
 		driver.get(baseUrl);
-		Thread.sleep(10000);
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
 		driver.quit();
 	}
 
-	@Test
-	public void validRegisterTest() throws InterruptedException {
-
+	@Test(dataProvider = "excel-inputs1", dataProviderClass = LoginDataProviders.class)
+	public void loginDBTest(String myEmail, String firstName, String lastName) {
 		registerPOM.clickSignBtn();
 		registerPOM.clickRegLink();
 		WebDriverWait wait = new WebDriverWait(driver, 80);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("email"))));
-		registerPOM.sendEmail("neha@gmail.com");
-		registerPOM.sendFirstName("roman");
-		registerPOM.sendLastName("neha");
+		registerPOM.sendEmail(myEmail);
+		registerPOM.sendFirstName(firstName);
+		registerPOM.sendLastName(lastName);
 		registerPOM.clickRegBtn();
-		Thread.sleep(4000);
-		
-		String expectedMsg = "You have successfully registered to Real Estate. We have emailed your password to the email address you entered.";
-		String txt = registerPOM.getMessage();
-		Assert.assertEquals(txt, expectedMsg);
-		
-		screenShot.captureScreenShot("TC001_Registration SS");
+		String expMsg = "The email address you entered is not valid.";
+		String actMsg = registerPOM.getEmailErrMsg();
+		Assert.assertTrue(actMsg.contains(expMsg));
+		screenShot.captureScreenShot("TC62");
+
 	}
 
 }

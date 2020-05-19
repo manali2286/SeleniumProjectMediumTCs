@@ -97,11 +97,12 @@ public class RETC_032_ViewEnquireCalculate {
 		js.executeScript("window.scrollBy(0,300)");
 		Thread.sleep(6000);
 
-		// String expEnqMsg = "Thank you for your message.It has been sent.";
-		// Assert.assertEquals(arrowEnqCalcPOM.getEnqErrorMsg(), expEnqMsg);
-		// There is a defect in the application- Once we click Send button, it always
-		// gives error message
-		// and Success message never comes.So this will always fail.
+		/*
+		 * String expEnqMsg = "Thank you for your message.It has been sent.";
+		 * Assert.assertEquals(arrowEnqCalcPOM.getEnqErrorMsg(), expEnqMsg); There is a
+		 * defect in the application- Once we click Send button, it always gives error
+		 * message and Success message never comes.So this will always fail.
+		 */
 
 		// Mortgage Calculator
 		arrowEnqCalcPOM.sendSalePrice("40000");
@@ -115,6 +116,10 @@ public class RETC_032_ViewEnquireCalculate {
 		String expMortSuccessMsg = "Monthly Payment: 1667.11 Rs.";
 		String actMsg = arrowEnqCalcPOM.mortSuccessMsg.getText();
 		Assert.assertTrue(actMsg.contains("Monthly Payment"));
+		
+		// Capture screenshot
+		screenShot.captureScreenShot("TC32_successMsg");
+		System.out.println(" TC32_success message captured!");
 
 	}
 }

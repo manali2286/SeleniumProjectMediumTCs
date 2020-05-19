@@ -55,8 +55,9 @@ public class RETC_002_LoginRegUser {
 			loginRegUserPOM.sendUserName("manali2286");			
 			loginRegUserPOM.sendPwd("Star2211");
 			loginRegUserPOM.clickSignInBtn();
+			Thread.sleep(4000);
 			
-			screenShot.captureScreenShot("TC002");
+			screenShot.captureScreenShot("TC002_UserProfilePage");
 		}
 
 
